@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "FlXN5SdupEJdUI389RlRTMItydLdKQeu68Vued0QoQS5zypsWEtIQiMImWWrjqiAB5wTJF2ywz6TbFlD/ax/Qw==",
+  "dgSpecHash": "234e8Jly2XAIP1yR5lJ26Lc/RepdFdRf8kV234oBFqYeeujr/q3P1DHQQSygru8P7P0Ng81wuchbi4OBzi0UMQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\a24sames\\RiderProjects\\breakout\\breakout.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\a24sames\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\a24sames\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
+    "C:\\Users\\a24sames\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
+    "C:\\Users\\a24sames\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
+    "C:\\Users\\a24sames\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
+    "C:\\Users\\a24sames\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
