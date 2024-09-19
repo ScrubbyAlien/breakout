@@ -17,7 +17,7 @@ public class Paddle
     {
         Sprite = new Sprite();
         Sprite.Texture = new Texture("assets/paddle.png");
-        Sprite.Position = new Vector2f(Program.ScreenWidth / 2f, Program.ScreenHeight - 35);
+        Reset();
         
         Vector2f paddleTextureSize = (Vector2f)Sprite.Texture.Size;
         Sprite.Origin = 0.5f  * paddleTextureSize;
@@ -28,6 +28,11 @@ public class Paddle
         size = new Vector2f(
             Sprite.GetGlobalBounds().Width,
             Sprite.GetGlobalBounds().Height);
+    }
+
+    public void Reset()
+    {
+        Sprite.Position = new Vector2f(Program.ScreenWidth / 2f, Program.ScreenHeight - 35);
     }
 
     public void Update(Ball ball, float deltaTime)
@@ -57,6 +62,7 @@ public class Paddle
         {
             ball.Sprite.Position += hit;
             ball.Reflect(hit.Normalized());
+            ball.ScoreMultiplier = 0;
         }
         
         Sprite.Position = newPos;

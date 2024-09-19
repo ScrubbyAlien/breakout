@@ -10,8 +10,9 @@ public class Ball
     private const float Speed = 400f;
 
 
-    private int _health = 3;
-    private int _score = 0;
+    public int Health;
+    public int Score;
+    public int ScoreMultiplier;
     public Text Gui;
     
     public Sprite Sprite;
@@ -22,7 +23,7 @@ public class Ball
     {
         Sprite = new Sprite();
         Sprite.Texture = new Texture("assets/ball.png");
-        Sprite.Position = new Vector2f(250, 300);
+        Reset();
 
         Vector2f ballTextureSize = (Vector2f)Sprite.Texture.Size;
         Sprite.Origin = 0.5f  * ballTextureSize;
@@ -33,9 +34,16 @@ public class Ball
         Gui = new Text();
         Gui.CharacterSize = 24;
         Gui.Font = new Font("assets/future.ttf");
+    }
+
+    public void Reset()
+    {
+        Health = 3;
+        Score = 0;
+        ScoreMultiplier = 0;
+        Sprite.Position = new Vector2f(250, 300);
         
     }
-    
 
     public void Update(float deltaTime)
     {
@@ -61,9 +69,10 @@ public class Ball
         
         if (newPos.Y > Program.ScreenHeight - Radius) // bounce off floor
         {
-            _health -= 1;
+            Health -= 1;
             newPos = new Vector2f(250, 300);
-            direction = new Vector2f(new Random().Next() % 2, 1).Normalized();
+            direction = new Vector2f((float) new Random().NextDouble() * 2f - 1f, 1).Normalized();
+            ScoreMultiplier = 0;
         }
         
         Sprite.Position = newPos;
@@ -74,11 +83,11 @@ public class Ball
     {
         target.Draw(Sprite);
 
-        Gui.DisplayedString = $"Health: {_health}";
+        Gui.DisplayedString = $"Health: {Health}";
         Gui.Position = new Vector2f(12, 8);
         target.Draw(Gui);
 
-        Gui.DisplayedString = $"Score: {_score}";
+        Gui.DisplayedString = $"Score: {Score}";
         Gui.Position = new Vector2f(Program.ScreenWidth - Gui.GetGlobalBounds().Width - 12, 8);
         target.Draw(Gui);
     }
