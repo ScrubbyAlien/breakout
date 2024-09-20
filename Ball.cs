@@ -42,7 +42,7 @@ public class Ball
         Score = 0;
         ScoreMultiplier = 0;
         Sprite.Position = new Vector2f(250, 300);
-        
+        direction = new Vector2f((float) new Random().NextDouble() * 2f - 1f, 1).Normalized();
     }
 
     public void Update(float deltaTime)

@@ -32,22 +32,24 @@ internal static class Program
             paddle.Update(ball, deltaTime);
             tiles.Update(ball, deltaTime);
             
-            
-            
-            
-            window.Clear(new Color(131, 197, 235));
             // draw objects
+            window.Clear(new Color(131, 197, 235));
             paddle.Draw(window);
             tiles.Draw(window);
             ball.Draw(window);
             
-            if (ball.Health <= 0) GameOver = true; 
+            if (ball.Health <= 0) GameOver = true;
+            //sometimes the ball starts bouncing at a very shallow angle so it takes
+            //very long for the ball to reach the paddle or tiles, press r to end the game and restart
+            if (Keyboard.IsKeyPressed(Keyboard.Key.R)) GameOver = true; 
             if (GameOver)
             {
                 Text finalScore = new Text();
                 finalScore.Font = new Font("assets/future.ttf");
                 finalScore.CharacterSize = 24;
-                finalScore.DisplayedString = $"FINAL SCORE: {ball.Score}\nPress space to play again";
+                finalScore.DisplayedString = $"FINAL SCORE: {ball.Score}\n" +
+                                             $"Press space to play again\n" +
+                                             $"Press ESC to close the game";
                 finalScore.Position = new Vector2f(
                     (ScreenWidth - finalScore.GetGlobalBounds().Width) / 2,
                     (ScreenHeight - finalScore.GetGlobalBounds().Height) / 2);
@@ -62,6 +64,11 @@ internal static class Program
                     {
                         GameOver = false;
                         break;
+                    }
+
+                    if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //let player close the game on game over
+                    {
+                        window.Close();
                     }
                 }
                 

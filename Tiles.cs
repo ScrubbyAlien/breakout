@@ -15,10 +15,14 @@ public class Tiles
         "Pink"
     };
 
-    private Vector2f[,] positions = new Vector2f[10, 5];
+    // collision is checked against every tile so total tiles should be small
+    private const int TilesAcross = 5; 
+    private const int TilesHigh = 4;
     
-    public const float Width = 50f;
-    public const float Height = 24f;
+    private Vector2f[,] positions = new Vector2f[TilesAcross, TilesHigh];
+    
+    public const float Width = Program.ScreenWidth / TilesAcross;
+    public const float Height = 30f;
     
     private Vector2f _size;
     
@@ -58,17 +62,20 @@ public class Tiles
             for (int j = 0; j < positions.GetLength(0); j++)
             {
                 Vector2f pos = positions[j, i];
-            
-                Vector2f center = pos + new Vector2f(Width / 2, Height / 2);
 
-                if (Collision.CircleRectangle(ball.Sprite.Position, Ball.Radius, center, _size, out Vector2f hit))
+                if (pos.X >= 0) //don't collide with removed tiles
                 {
-                    ball.Sprite.Position += hit;
-                    ball.Reflect(hit.Normalized());
-                    positions[j, i] = new Vector2f(-1, -1);
-                    ball.Score += 100 + ball.ScoreMultiplier * 100;
-                    ball.ScoreMultiplier++;
-                    i = 0;
+                    Vector2f center = pos + new Vector2f(Width / 2, Height / 2);
+
+                    if (Collision.CircleRectangle(ball.Sprite.Position, Ball.Radius, center, _size, out Vector2f hit))
+                    {
+                        ball.Sprite.Position += hit;
+                        ball.Reflect(hit.Normalized());
+                        positions[j, i] = new Vector2f(-1, -1);
+                        ball.Score += 100 + ball.ScoreMultiplier * 100;
+                        ball.ScoreMultiplier++;
+                        i = 0;
+                    }
                 }
             }
             
