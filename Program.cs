@@ -44,6 +44,7 @@ internal static class Program
             if (Keyboard.IsKeyPressed(Keyboard.Key.R)) GameOver = true; 
             if (GameOver)
             {
+                // Create final score gui element, could be extracted into function for readability
                 Text finalScore = new Text();
                 finalScore.Font = new Font("assets/future.ttf");
                 finalScore.CharacterSize = 24;
@@ -75,8 +76,6 @@ internal static class Program
                 ball.Reset();
                 paddle.Reset();
                 tiles.Reset();
-                
-                // Also reset the tiles.
             }
             
             
